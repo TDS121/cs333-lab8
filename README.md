@@ -120,7 +120,7 @@ function Contact(props) {
   return (
     <div className="contact">
       <h2>{props.name}</h2>
-      <p>Phone: {props.phone}</p>
+      <p>Phone: {props.phoneNumber}</p>
     </div>
   );
 }
@@ -131,9 +131,9 @@ export default Contact;
 and change the three `<Contact />` lines in `App.jsx` to this:
 
 ```jsx
-      <Contact name="Ada Lovelace" phone="541-555-0101" />
-      <Contact name="Alan Turing" phone="541-555-0102" />
-      <Contact name="Grace Hopper" phone="541-555-0103" />
+      <Contact name="Ada Lovelace" phoneNumber="541-555-0101" />
+      <Contact name="Alan Turing" phoneNumber="541-555-0102" />
+      <Contact name="Grace Hopper" phoneNumber="541-555-0103" />
 ```
 
 TODO: change the names and phone numbers to people you make up (or your favorite characters). Keep the phone numbers fake.
@@ -147,7 +147,7 @@ Question 2: what does `console.log(props)` print? What kind of thing is `props`?
 ```jsx
       <Contact
         name="Ada Lovelace"
-        phone="541-555-0101"
+        phoneNumber="541-555-0101"
         email="ada@example.com"
         avatar="https://i.pravatar.cc/150?img=5"
       />
@@ -185,19 +185,19 @@ Right now your data (names, phones) is mixed in with your layout in `App.jsx`. L
 const contacts = [
   {
     name: "Ada Lovelace",
-    phone: "541-555-0101",
+    phoneNumber: "541-555-0101",
     email: "ada@example.com",
     avatar: "https://i.pravatar.cc/150?img=5",
   },
   {
     name: "Alan Turing",
-    phone: "541-555-0102",
+    phoneNumber: "541-555-0102",
     email: "alan@example.com",
     avatar: "https://i.pravatar.cc/150?img=12",
   },
   {
     name: "Grace Hopper",
-    phone: "541-555-0103",
+    phoneNumber: "541-555-0103",
     email: "grace@example.com",
     avatar: "https://i.pravatar.cc/150?img=9",
   },
@@ -227,19 +227,19 @@ Question 4: what does the Console show? What is `contacts`, and what is each thi
 ```jsx
       <Contact
         name={contacts[0].name}
-        phone={contacts[0].phone}
+        phoneNumber={contacts[0].phoneNumber}
         email={contacts[0].email}
         avatar={contacts[0].avatar}
       />
       <Contact
         name={contacts[1].name}
-        phone={contacts[1].phone}
+        phoneNumber={contacts[1].phoneNumber}
         email={contacts[1].email}
         avatar={contacts[1].avatar}
       />
       <Contact
         name={contacts[2].name}
-        phone={contacts[2].phone}
+        phoneNumber={contacts[2].phoneNumber}
         email={contacts[2].email}
         avatar={contacts[2].avatar}
       />
@@ -273,7 +273,7 @@ function createContact(contact) {
   return (
     <Contact
       name={contact.name}
-      phone={contact.phone}
+      phoneNumber={contact.phoneNumber}
       email={contact.email}
       avatar={contact.avatar}
     />
@@ -327,7 +327,7 @@ function createContact(contact) {
     <Contact
       key={contact.id}
       name={contact.name}
-      phone={contact.phone}
+      phoneNumber={contact.phoneNumber}
       email={contact.email}
       avatar={contact.avatar}
     />
@@ -407,7 +407,7 @@ function Contact(props) {
     <div className="contact">
       <Avatar src={props.avatar} name={props.name} />
       <h2>{props.name}</h2>
-      <p>Phone: {props.phone}</p>
+      <p>Phone: {props.phoneNumber}</p>
       {props.email && <p>Email: {props.email}</p>}
     </div>
   );
@@ -534,7 +534,7 @@ Commit: `Part 6: build and deploy`
 | `contacts is not defined` | `App.jsx` is missing the import | `import contacts from "./contacts.js";` at the top of `App.jsx` |
 | `Cannot read properties of undefined (reading 'name')` | You asked for a contact that isn't there, like `contacts[3]` when you only have 3 | Remember the first one is `contacts[0]` |
 | `Each child in a list should have a unique "key" prop` | The `<Contact` in `createContact` has no `key` | Step 13: `key={contact.id}`, and every contact needs a different `id` |
-| A name or phone doesn't show up | The prop name in `App.jsx` and in `Contact.jsx` don't match | `phone="..."` in App has to be `props.phone` in Contact, same spelling |
+| A name or phone doesn't show up | The prop name in `App.jsx` and in `Contact.jsx` don't match | `phoneNumber="..."` in App has to be `props.phoneNumber` in Contact, same spelling |
 | The pictures don't show | No internet, or a typo in the avatar link | Paste the link into your browser to check it |
 | `Adjacent JSX elements must be wrapped in an enclosing tag` | `return` has more than one tag at the top | Wrap everything in one `<div>` ... `</div>` |
 | Way B: `/contacts/` shows a blank page | You built without `--base=/contacts/` | `npm run build -- --base=/contacts/` and copy `dist/*` into `/var/www/html/contacts/` again |
