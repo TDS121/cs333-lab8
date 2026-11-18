@@ -111,6 +111,8 @@ and under the `<h1>` line, add three of them:
 
 Question 1: what do you see? Why are all three the same?
 
+I See 3 Ada Lovelaces under My Contacts. The reason I can see 3 is because the tag is there 3 times so React runs the Contact function 3 times
+
 6. Props. A prop is a value you hand to a component, written like an HTML attribute. Change `Contact.jsx` to this:
 
 ```jsx
@@ -142,6 +144,8 @@ Look in the Console. (You might see each line twice. That's React double-checkin
 
 Question 2: what does `console.log(props)` print? What kind of thing is `props`?
 
+Props is a JavaScript object so each `<Contact />` tag becomes a property
+
 7. Two more props. Add `email` and `avatar` to each `<Contact />` in `App.jsx`, for example:
 
 ```jsx
@@ -170,6 +174,8 @@ and this one under the phone line:
 ```
 
 Question 3: the `Contact` component is written once. How does it show three different people?
+
+Contact is written once, but `App` uses it 3 times and passes different props each time.
 
 Commit: `Part 2: props`
 
@@ -222,6 +228,8 @@ and inside `function App() {`, above the `return`, add:
 
 Question 4: what does the Console show? What is `contacts`, and what is each thing inside it?
 
+The console shows an arry with 3 items. When you expand it, you are able to see all the contacts we added, even which avatar we chose.
+
 10. Now replace your three `<Contact ... />` tags in `App.jsx` with these, which read from `contacts`:
 
 ```jsx
@@ -249,6 +257,8 @@ The page should look the same. But now all your data lives in `contacts.js`.
 
 Question 5: why `0`, `1` and `2`? What would you have to do if you had 100 contacts?
 
+The numbers are the positions in the array. If there were 100 contacts currently I would have to go 0 to 99, there is definitely a more effiecient way.
+
 Commit: `Part 3: data in contacts.js`
 
 ---
@@ -265,6 +275,8 @@ Commit: `Part 3: data in contacts.js`
 ```
 
 Question 6: what's in `names`? How many times did the function run?
+
+`names` is an array of only just the names such as Spiderman etc and the function ran 3 times, once for each name
 
 12. Now use `map` to make the `<Contact />`s. In `App.jsx`, above `function App() {` (not inside it), add this function. It takes one contact and returns one `<Contact />`:
 
@@ -291,6 +303,9 @@ The page should look the same, but the three `<Contact />`s are made for you now
 
 Question 7: what does the red message say?
 
+`Each child in a list should have a unique "key" prop.
+Check the render method of `div`. It was passed a child from App. See https://react.dev/link/warning-keys for more information.`
+
 13. Keys. When React makes a list with `map`, it wants a `key` on each one: a value that's different for every item, so React can tell them apart when the list changes. Add an `id` to each contact in `contacts.js`, like this:
 
 ```js
@@ -314,6 +329,8 @@ Save, refresh, and the red message should be gone.
 14. Add a fourth contact at the bottom of `contacts.js` (with `id: 4`). Don't touch `App.jsx`.
 
 Question 8: did your fourth contact show up? Why didn't you have to change `App.jsx`?
+
+I did add another contact. `contacts.map(createContact)` makes a `<Contact />` for every item in the array
 
 Your whole `App.jsx` should look like this now (with your own console.logs if you added more):
 
@@ -386,6 +403,8 @@ The page should look the same. `App` uses `Contact`, and now `Contact` uses `Ava
 16. A contact with no email. In `contacts.js`, delete the whole `email: ...` line from one of your contacts. Save and look at that contact.
 
 Question 9: what does that contact show for Email? Why?
+
+There is an email field but with no email. This is because `props.email` is undefined
 
 Fix it in `Contact.jsx` by changing the email line to this:
 
